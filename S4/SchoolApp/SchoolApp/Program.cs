@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using School.Repository;
 using SchoolApp.Models;
 using SchoolApp.Models.Repository;
+using SchoolApp.Models.UnitOfWork;
 using System.Collections.Generic;
 
 public class Program
@@ -8,28 +10,39 @@ public class Program
     private static void Main(string[] args)
     {
         SchoolContext context = new SchoolContext();
-       
-        BaseRepository<Section> repository = new BaseRepository<Section>(context);
+
+        //BaseRepositorySQL<Section> repository = new BaseRepositorySQL<Section>(context);
+        //BaseRepositorySQL<Student> repositorySt= new BaseRepositorySQL<Student>(context);
+        UnitOfWorkDB unitOfWorkSchool = new UnitOfWorkMem();
+        IRepository<Section> repository = unitOfWorkSchool.repositorySec;
+        IRepository<Student> repositorySt = unitOfWorkSchool.repositoryStud;
 
 
-        BaseRepository<Student> repositoryd = new BaseRepository<Student>(context);
-        Section sectInfo = new Section();
-        Section sectDiet = new Section();
+        Section sectInfo = new Section { Name = "sectInfo" };
+        Section sectDiet = new Section {  Name = "sectDiet" };
 
-        sectDiet.SectionId = 1;
-        sectDiet.Name = "sectDiet";
-        sectInfo.SectionId = 2;
-        sectInfo.Name = "sectInfo";
+        repository.Save(sectInfo, s => s.Name.Equals(sectInfo.Name));
+        repository.Save(sectDiet, s => s.Name.Equals(sectDiet.Name));
 
-        repository.Insert(sectInfo);
-        repository.Insert(sectDiet);
+        Student student1 = new Student { Firstname = "Student1", Name = "Studinfo1", Section = sectInfo, YearResult = 100 };
+        Student student2 = new Student { Firstname = "Student2", Name = "Studdiet", Section = sectDiet, YearResult = 120 };
+        Student student3 = new Student { Firstname = "Student3", Name = "Studinfo2", Section = sectInfo, YearResult = 110 };
         
-        foreach (Section section in repository.GetAll())
+
+        repositorySt.Save(student1, s => s.Name.Equals(student1.Name) && s.Firstname.Equals(student1.Firstname));
+        repositorySt.Save(student2, s => s.Name.Equals(student2.Name) && s.Firstname.Equals(student2.Firstname));
+        repositorySt.Save(student3, s => s.Name.Equals(student3.Name) && s.Firstname.Equals(student3.Firstname));
+
+        IList<Section> sections = repository.GetAll().ToList();
+        IList<Student> students = repositorySt.GetAll().ToList();
+
+        foreach (Section section in sections)
         {
-            Console.WriteLine(section);
+            Console.WriteLine("{0},{1}",section.SectionId,section.Name);
         }
+        foreach (Student student in students)
+            Console.WriteLine("{0},{1}", student.Name, student.Section.Name);
     }
-
-
-
 }
+
+
