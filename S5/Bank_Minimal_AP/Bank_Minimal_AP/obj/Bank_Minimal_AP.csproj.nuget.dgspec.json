@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\20201271\\Desktop\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\dotNet\\dotNetRepo\\dotnet\\S5\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\20201271\\Desktop\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj": {
+    "C:\\Users\\Admin\\Desktop\\dotNet\\dotNetRepo\\dotnet\\S5\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\20201271\\Desktop\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\dotNet\\dotNetRepo\\dotnet\\S5\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj",
         "projectName": "Bank_Minimal_AP",
-        "projectPath": "C:\\Users\\20201271\\Desktop\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj",
-        "packagesPath": "C:\\Users\\20201271\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\20201271\\Desktop\\Bank_Minimal_AP\\Bank_Minimal_AP\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\dotNet\\dotNetRepo\\dotnet\\S5\\Bank_Minimal_AP\\Bank_Minimal_AP\\Bank_Minimal_AP.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\dotNet\\dotNetRepo\\dotnet\\S5\\Bank_Minimal_AP\\Bank_Minimal_AP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\20201271\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

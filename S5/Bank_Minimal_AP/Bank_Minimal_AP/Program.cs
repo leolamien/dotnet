@@ -37,10 +37,8 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
-app.MapControllers();
 
-app.MapGet("{price}/{pays}",(price,pays)=>
-  public double CalculPrice(int price, String pays)
+app.MapGet("/{price}/{pays}", ([FromQuery] int price, [FromQuery] String pays) =>
 {
     if (pays == "BE")
     {
@@ -51,7 +49,8 @@ app.MapGet("{price}/{pays}",(price,pays)=>
         return price * 1.20;
     }
     return 0;
-});
+}
+);
 
 app.Run();
 

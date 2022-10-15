@@ -23,21 +23,21 @@ new Student { ID = 3, Firstname = "Elie", Lastname = "Coptaire", BirthDate = new
         }
 
         [HttpPost("student")]
-        public Student Add([FromBody] string Firstname, [FromBody] string Lastname, [FromBody] DateTime BirthDate)
+        public ActionResult<Student> Add([FromBody] Student student)
         {
-            Student student = new Student { ID = _students.Count+1, Firstname = Firstname, Lastname = Lastname, BirthDate = BirthDate };
+            Student stud = new Student { ID = _students.Count+1, Firstname = student.Firstname, Lastname = student.Lastname, BirthDate = student.BirthDate };
+            _students.Add(stud);    
 
-
-            return student;
+            return Ok(stud);
         }
 
         [HttpGet("students/{id}")]
-        public Student GetOne([FromQuery] int id)
+        public ActionResult<Student> GetOne([FromQuery] int id)
         {
             Student student =_students.Find((s) => s.ID == id);
             if (student == null)
-                return null;
-            return student;
+                return NotFound();
+            return Ok(student);
         }
     }
 }
