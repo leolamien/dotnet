@@ -16,6 +16,7 @@ namespace ex.Nortwind_API.Repository
        async public Task DeleteAsync(TEntity entity)
         {
              context.Set<TEntity>().Remove(entity);
+            await context.SaveChangesAsync();
         }
 
          async public Task<IList<TEntity>> GetAllAsync()
@@ -31,16 +32,16 @@ namespace ex.Nortwind_API.Repository
 
        async  public Task InsertAsync(TEntity entity)
         {
-           await context.Set<TEntity>().AddAsync(entity);
+            context.Set<TEntity>().AddAsync(entity);
+            await context.SaveChangesAsync();
 
         }
 
-       async public Task<bool?> SaveAsync(TEntity entity, Expression<Func<TEntity, bool>> predicate)
+       async public Task SaveChangesAsync()
         {
             try
             {
                 await context.SaveChangesAsync();
-                return true;
             }
             catch (DbUpdateException ex)
             {
@@ -49,9 +50,27 @@ namespace ex.Nortwind_API.Repository
             }
         }
 
-       async public Task<IList<TEntity>> SearchForAsync(Expression<Func<TEntity, bool>> predicate)
+        async public Task<IList<TEntity>> SearchForAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await context.Set<TEntity>().Where(predicate).ToListAsync();
+        }
+
+        public async Task<bool?> SaveAsync(TEntity entity, Expression<Func<TEntity, bool>> predicate)
+        {
+            TEntity? ent = SearchForAsync(predicate).Result.FirstOrDefault();
+
+            if (ent == null)
+            {
+                await InsertAsync(entity);
+                return true;
+            }
+            else
+            {
+               context.Set<TEntity>().Update(entity);
+                await SaveChangesAsync();
+            }
+
+            return true;
         }
     }
 }
