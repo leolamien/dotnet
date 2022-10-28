@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @model IList<Northwind_API.Models.EmployeModel>
+    <table cellpadding="10" cellspacing="10">
+        <tr>
+            <th>EmployeeId</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>BirthDate</th>
+            <th>Title</th>
+            <th>TitleOfCourtesy</th>
+
+        </tr>
+        @foreach (EmployeModel person in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(e => person.EmployeeId)</td>
+                <!-- OR -->
+                <td>@person.LastName </td>
+                <td>@person.FirstName </td>
+                <td>@person.BirthDate </td>
+                <td>@person.Title </td>
+                <td>@person.TitleOfCourtesy </td>
+            </tr>
+        }
+    </table>
+</div>
